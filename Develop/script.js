@@ -1,10 +1,22 @@
 
-// Event listenser search button code
+// adding event listener method to the element search button
 
+// searchButton is Element
+searchButton.addEventListener("click", function() { if (myStorage.length >=5){searchHistory.removeChild(searchHistory.firstElementChild);}
 
+fe
+fetchCityWeather(city);
+let searchHistoryButton = searchHistory.appendChild
+(document.createElement("button"));
+fetchCityWeather(city);
+let searchHistoryButton = searchHistory.appendChild(document.createElement("button"));
 
+city= cityInput[0].value.trim();
 
+    
 
+})
+f
 
 
 
@@ -20,5 +32,4 @@ function fetchCityWeather(city){
 
         return err;
     })
-
 }
