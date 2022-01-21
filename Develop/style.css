@@ -1,0 +1,17 @@
+
+/* styles done to look like the mockup from the readme */
+
+#forecast{
+    position: absolute;left: -4%;
+
+}
+.deck{
+    position: absolute;
+    left: -15%;
+    top: 50%;
+}
+
+h1 {
+    margin-bottom: 0%;
+    background-image: linear-gradient(to right, rgb(78, 186, 236) , rgb(190, 109, 245));
+}
