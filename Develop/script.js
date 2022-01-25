@@ -29,4 +29,10 @@ $(document).ready(function () {
     }
     
     
-    
+                    // listener
+                    $(".history").on("click", "li", function () {
+                        weatherFunction($(this).text());
+                        weatherForecast($(this).text());
+                    });
+                
+                    
