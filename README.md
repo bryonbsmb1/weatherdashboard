@@ -5,7 +5,7 @@ Homework 6
 
 # Screenshot of the app 
 
- ![""](./Develop/assets/appscreenshot.jpeg)
+ ![""](./assets/appscreenshot.jpeg)
 
 # Technologies used:
 
