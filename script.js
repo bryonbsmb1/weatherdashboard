@@ -24,4 +24,19 @@ async function getWeatherInfo(cityName) {
   const oneCallUrl = getOneCallUrl(lon, lat)
   const oneCallResponse = await fetch(oneCallUrl)
   const oneCallData = await oneCallResponse.json()
+
+  const iconUrl = `http://openweathermap/org/img/wn/${oneCallData.current.weather.icon}.png`
+  const temperature = oneCallData.current.temperature
+  const humidity = oneCallData.current.humidity
+  const windSpeed = oneCallData.current.wind_speed
+  const uvIndex = oneCallData.current.uvi
+  const date = new Date().toLocaleDateString()
+
+  document.querySelector('#today-city').textContent = cityName
+  document.querySelector('#today-date').textContent = date
+  document.querySelector('#today-icon').src = iconUrl
+  document.querySelector('#today-temperature').textContent = temperature
+  document.querySelector('#today-humidity').textContent = humidity
+  document.querySelector('#today-windspeed').textContent = windSpeed
+  document.querySelector('#today-uv').textContent = uvIndex
 }
