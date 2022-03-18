@@ -1,7 +1,7 @@
 const apiKey = 'd80c128733419c6552a8e47781c43818'
 
 function getOneCallUrl(lon, lat) {
-  return `https://api.openweathermap.org/data/2.5/onecall?lon=${lon}&lat=${lat}&appid=${apiKey}&exclude=minutely,hourly,alerts`
+  return `https://api.openweathermap.org/data/2.5/onecall?lon=${lon}&lat=${lat}&appid=${apiKey}&exclude=minutely,hourly,alerts&units=imperial`
 }
 function getWeatherUrl(cityName) {
   return `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`
@@ -25,8 +25,8 @@ async function getWeatherInfo(cityName) {
   const oneCallResponse = await fetch(oneCallUrl)
   const oneCallData = await oneCallResponse.json()
 
-  const iconUrl = `http://openweathermap/org/img/wn/${oneCallData.current.weather.icon}.png`
-  const temperature = oneCallData.current.temperature
+  const iconUrl = `https://openweathermap.org/img/wn/${oneCallData.current.weather[0].icon}.png`
+  const temperature = oneCallData.current.temp
   const humidity = oneCallData.current.humidity
   const windSpeed = oneCallData.current.wind_speed
   const uvIndex = oneCallData.current.uvi
@@ -40,3 +40,4 @@ async function getWeatherInfo(cityName) {
   document.querySelector('#today-windspeed').textContent = windSpeed
   document.querySelector('#today-uv').textContent = uvIndex
 }
+getWeatherInfo("San Diego")
