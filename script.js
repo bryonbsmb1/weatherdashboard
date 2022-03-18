@@ -11,6 +11,9 @@ function displayHistoryItem(cityName) {
   const historyElement = document.querySelector('.history')
   const historyItemElement = document.createElement('li')
   historyItemElement.textContent = cityName
+  historyItemElement.addEventListener("click",function(){
+      getWeatherInfo(cityName)
+  })
   historyElement.appendChild(historyItemElement)
 }
 
@@ -20,7 +23,7 @@ function displayForecastItem (oneCallData,day,cityName){
   const humidity = oneCallData.daily[day].humidity
   const windSpeed = oneCallData.daily[day].wind_speed
   const uvIndex = oneCallData.daily[day].uvi
-  const date = new Date().toLocaleDateString()
+  const date = new Date(oneCallData.daily[day].dt*1000).toLocaleDateString()
 
   document.querySelector(`#forecast${day+1}-city`).textContent = cityName
   document.querySelector(`#forecast${day+1}-date`).textContent = date
@@ -62,4 +65,23 @@ async function getWeatherInfo(cityName) {
     displayForecastItem(oneCallData,i,cityName)
   }
 }
-getWeatherInfo("San Diego")
+
+function addHistoryItem(cityName){
+    const historyItems=JSON.parse(localStorage.getItem("history")||"[]")
+    historyItems.push(cityName)
+    localStorage.setItem("history",JSON.stringify(historyItems))
+    displayHistoryItem(cityName)
+}
+
+const historyItems=JSON.parse(localStorage.getItem("history")||"[]")
+for(let historyItem of historyItems){
+displayHistoryItem(historyItem)
+}
+
+document.querySelector("#cityForm").addEventListener("submit",function(event){
+    event.preventDefault()
+    const cityName=document.querySelector("#search-value").value
+    getWeatherInfo(cityName)
+    addHistoryItem(cityName)
+})
+
